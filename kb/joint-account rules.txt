@@ -1,0 +1,5 @@
+Joint account rules are as follows
+To make a deposit, any one of the account holders can make a deposit.
+To make a withdrawal, both parties are required to be present or at least the signature for both is required.
+To apply for the loan, both account holders need to be physically present to apply.
+To close the joint account, both account holders need to be physically present.
