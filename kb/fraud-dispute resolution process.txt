@@ -1,0 +1,5 @@
+If any transaction seems to be a fraudulent transaction, then you can dispute it.
+You need to fill all the information regarding the transaction.
+The date, amount, merchant's name and the reason for which it seems to be fraudulent needs to be filled out in the application.
+There are four possible reasons that can be mentioned. The reasons are: the transaction is not recognised, the amount is overcharged, the transaction was not authorised or Others under which you need to specify the reason.
+Once the application is submitted, it will take 3-5 business days to review your request and decision will be emailed to you. The disputed amount will be held meanwhile.
