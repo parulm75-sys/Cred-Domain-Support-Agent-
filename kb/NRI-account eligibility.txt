@@ -1,0 +1,4 @@
+The documents provides the requirement for the NRI account application.
+To open an account, an NRI applicant must hold Indian citizenship, have resided outside India for more than 182 days in the preceding financial year, and provide a valid passport, a current visa or residency permit, and proof of overseas address issued within the last three months.
+NRI applicants may open either an NRE account, funded from foreign earnings and fully repatriable, or an NRO account for income sourced within India such as rent or dividends, with annual repatriation from an NRO account capped at USD 1 million per financial year. 
+Overseas address proof submitted at the time of application will be accepted in place of the Aadhaar-based address verification required under the standard KYC policy.
