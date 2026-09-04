@@ -1,0 +1,4 @@
+Credit score can be impacted by many factors which are as follows. The default credit score of 700 is given to every person whose age is 18 or above.
+Every credit check brings down the credit score by 5 points. The outstanding loan amount on the person will have a negative impact. 
+A higher loan-to-income ratio reduces the score further.
+Every late bill payment will decrease the score by 30 points. Consecutive 6 months with no late bill payment will increase the score by 20 points.
