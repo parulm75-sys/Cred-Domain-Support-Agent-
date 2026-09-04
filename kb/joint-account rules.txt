@@ -1,5 +1,6 @@
-Joint account rules are as follows
+Joint account rules are as follows.
 To make a deposit, any one of the account holders can make a deposit.
 To make a withdrawal, both parties are required to be present or at least the signature for both is required.
-To apply for the loan, both account holders need to be physically present to apply.
-To close the joint account, both account holders need to be physically present.
+To apply for a loan, both account holders need to be physically present to apply.
+To close a joint account, both account holders need to be physically present.
+In case one of the account holder dies, it can be converted to an individual account by providing the death certificate and will be processed within a week. Meanwhile, all the assets will be on hold and cannot be withdrawn

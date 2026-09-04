@@ -1,0 +1,5 @@
+There are total 4 interest slabs based on the loan amount taken.
+If your loan amount is under 50000 INR, then the interest is 1.2% monthly.
+If your loan amount is more than 50000 INR up to 250000 INR inclusively, then the interest rate would be 1.1% monthly.
+If your loan amount is between 250001 INR and 800000 INR , the interest rate would be 1% monthly.
+If your loan amount is more than 800000 INR, the interest rate would be 0.92% monthly.

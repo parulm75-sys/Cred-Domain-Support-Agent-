@@ -1,0 +1,4 @@
+For KYC, there are three types of documents required.
+The first is Aadhar card which is also the proof of Address, second is PAN card and the last one is two passport-sized photographs.
+The information across the documents should match the database in order to be successfully validated.
+If it fails, then you have to resubmit the documents in order to get it approved.
