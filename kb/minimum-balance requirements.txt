@@ -1,0 +1,3 @@
+This document provides the minimum balance requirements for the account to be active.
+The minimum balance of the account must be 1000 INR. If it is under the minimum balance, then there would a 100 INR penalty to the account monthly until the account reaches zero or the holder maintain minimum balance.
+There should be at least one transaction in six-month period if the account is at minimum balance to keep the account active. Otherwise, the account holder will need to come to the bank to reactivate it.
