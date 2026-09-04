@@ -1,0 +1,4 @@
+Credit card charges the customers as well as merchant at the same time. To use the credit card, there is 0.5% fee to the 
+user and 2% fee to the merchant for every transaction. Interest is also charged to the balance that is not paid until the due date
+which is calculated on the basis of simple interest of 1% every month that is added to the monthly statement. But there is no late payment fees.
+There is also a 100 INR annual fee for the user.
