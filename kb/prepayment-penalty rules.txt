@@ -1,0 +1,5 @@
+A prepayment penalty applies when a borrower repays part or all of a loan ahead of the scheduled repayment date.
+No prepayment is permitted within the first six months of the loan term for any loan type.
+After the lock-in period, borrowers who partially prepay will be charged 2% of the amount prepaid, while borrowers who close the loan entirely will be charged 3% of the outstanding principal at the time of closure.
+Home loans are exempt from all prepayment penalties in accordance with regulatory guidelines.
+All other loan types offered by the Bank, including personal loans, auto loans, education loans, and business loans, remain subject to the charges stated above.
