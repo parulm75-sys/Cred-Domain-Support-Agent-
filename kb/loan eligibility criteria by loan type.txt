@@ -1,0 +1,6 @@
+This document provides the conditions for getting the loan approved versus the type of loan being applied for.
+Personal Loan: Applicants for a Personal Loan must have a credit score above 720, and their monthly income must be at least twice the monthly instalment.
+Home Loan : Home Loan applicants must have a credit score above 700, and the maximum amount sanctioned is five times the applicant's annual income.
+Auto Loan : Applicants for an Auto Loan must have a credit score above 680, and their monthly income must be at least 1.5 times the monthly instalment.
+Education Loan : Education Loan applicants are not assessed on credit score. They must instead submit an offer letter from a recognised educational institution, and the maximum amount sanctioned is three times the parents' annual income.
+Business Loan : Business loan applicants should have credit score greater than 750 and maximum loan sanctioned is the annual turnover for the particular business.
