@@ -14,4 +14,3 @@ for i in range(1,41):
     }
     LOAN_APPLICATIONS.append(data)
 count=Counter(record["category"] for record in LOAN_APPLICATIONS)
-print(count)
