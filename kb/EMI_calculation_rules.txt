@@ -1,5 +1,5 @@
 EMI calculation has 3 factors to be considered. We need monthly interest rate, time in months and the total amount owed.
 Firstly, total interest is calculated for the duration by the formula rate*time*amount.
 Then, the figure is added to the amount owed which is finally divided by the total duration of the loan.
-Suppose, you have a loan amount of 100,000 INR at interest rate of 1% monthly for 12 months, then your total interest would be 12,000 INR.
-Your total amount owing would be 112,000 INR total, this will result in EMI of about 9,333 INR per month.
+Suppose, you have a loan amount of 100000 INR at interest rate of 1% monthly for 12 months, then your total interest would be 12000 INR.
+Your total amount owing would be 112000 INR total, this will result in EMI of about 9333 INR per month.
