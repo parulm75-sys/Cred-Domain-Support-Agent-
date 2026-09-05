@@ -3,15 +3,17 @@ from langchain_text_splitters import CharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import re
 import chromadb
-kb_folder = Path("kb")
-kb_docs = {}
-for file_path in kb_folder.glob("*.txt"):
-    doc_id=file_path.stem
-    content=file_path.read_text(encoding="utf-8")
-    content = " ".join(content.split())
-    kb_docs[doc_id]=content
-for doc_id, text in kb_docs.items():
-    print(f"Loaded '{doc_id}': {len(text)} characters")
+def load_kb():
+    kb_folder = Path("kb")
+    kb_docs = {}
+    for file_path in kb_folder.glob("*.txt"):
+        doc_id=file_path.stem
+        content=file_path.read_text(encoding="utf-8")
+        content = " ".join(content.split())
+        kb_docs[doc_id]=content
+    for doc_id, text in kb_docs.items():
+        print(f"Loaded '{doc_id}': {len(text)} characters")
+    return kb_docs
 def sen_chunk(text):
     splitter=re.split(r"(?<=[.!?])\s+", text)
     result=[]
@@ -26,7 +28,7 @@ def fixed_chunk(text):
 )
     chunks=text_splitter.split_text(text)
     return chunks
-def embed_doc():
+def embed_doc(kb_docs):
     # Parallel lists for Sentence Strategy
     sen_docs = []
     sen_ids = []
@@ -56,27 +58,30 @@ def embed_doc():
                 })
     print(sen_docs[0],fixed_docs[0])
     return([sen_ids,sen_docs,sen_metadatas,fixed_ids,fixed_docs,fixed_metadatas])
-lists=embed_doc()
-for i in lists:
-    print(len(i))
+if __name__ == "__main__":
+    kb_docs=load_kb()
+    lists=embed_doc(kb_docs)
+    for i in lists:
+        print(len(i))
 
 #  Embedding and ChromaDB
-model = SentenceTransformer('all-MiniLM-L6-v2')
-sen_vectors = model.encode(lists[1])
-fixed_vectors=model.encode(lists[4])
-client = chromadb.PersistentClient(path="chroma_db")
-sen_collection = client.get_or_create_collection(name="cred_sentence")
-sen_collection.upsert(
-    ids=lists[0],
-    documents=lists[1],
-    embeddings=sen_vectors.tolist(),
-    metadatas=lists[2]
-)
-fixed_collection = client.get_or_create_collection(name="cred_fixed")
-fixed_collection.upsert(
-    ids=lists[3],
-    documents=lists[4],
-    embeddings=fixed_vectors.tolist(),
-    metadatas=lists[5]
-)
-print(sen_collection.count())
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    sen_vectors = model.encode(lists[1])
+    fixed_vectors=model.encode(lists[4])
+    client = chromadb.PersistentClient(path="chroma_db")
+    sen_collection = client.get_or_create_collection(name="cred_sentence")
+    sen_collection.upsert(
+        ids=lists[0],
+        documents=lists[1],
+        embeddings=sen_vectors.tolist(),
+        metadatas=lists[2]
+    )
+    fixed_collection = client.get_or_create_collection(name="cred_fixed")
+    fixed_collection.upsert(
+        ids=lists[3],
+        documents=lists[4],
+        embeddings=fixed_vectors.tolist(),
+        metadatas=lists[5]
+    )
+    print(sen_collection.count())
+    print(fixed_collection.count())
