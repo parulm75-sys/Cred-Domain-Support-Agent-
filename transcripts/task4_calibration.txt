@@ -1,0 +1,14 @@
+True  Sentence:  0.6948370933532715  Fixed:  0.6551300287246704   How many days it will take to close my account?
+True  Sentence:  0.6539443731307983  Fixed:  0.6160070896148682   What is the annual fee for the credit card?
+True  Sentence:  0.5003811717033386  Fixed:  0.47194164991378784   How can I increase my credit score?
+True  Sentence:  0.7455790042877197  Fixed:  0.715136706829071   What would be my EMI if I take a loan of 50000 INR at 1% rate monthly for 70 months
+True  Sentence:  0.6370911598205566  Fixed:  0.6225575804710388   I think there is a transaction that is unknown to me, what can I do?
+True  Sentence:  0.7477608919143677  Fixed:  0.7372024059295654   I have taken the loan of 76567 INR, what is my interest rate?
+True  Sentence:  0.536149263381958  Fixed:  0.597514808177948   me and my wife holds a joint account, I want to make a withdrawal, can I come by myself?
+True  Sentence:  0.4106283187866211  Fixed:  0.4104304313659668   MY KYC fails, what is my next step?
+True  Sentence:  0.652094841003418  Fixed:  0.6759852170944214   I want to apply for Car Loan and I have credit score of 701, am I eligible to apply?
+True  Sentence:  0.518278181552887  Fixed:  0.5062810182571411   Why I am being charged 100 INR monthly, my account balance is 799 INR for now?
+True  Sentence:  0.7865658402442932  Fixed:  0.7680226564407349   What are the documents required to apply for NRI account?
+True  Sentence:  0.702844500541687  Fixed:  0.6764959692955017   What is the fees, I am looking at if I want to pay my 60000 INR loan after the first year?
+False  Sentence:  0.42276495695114136  Fixed:  0.46261608600616455   What is the monthly salary of the bank employee
+False  Sentence:  0.22663986682891846  Fixed:  0.34235888719558716   What is the capital of India?

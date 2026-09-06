@@ -69,14 +69,14 @@ if __name__ == "__main__":
     sen_vectors = model.encode(lists[1])
     fixed_vectors=model.encode(lists[4])
     client = chromadb.PersistentClient(path="chroma_db")
-    sen_collection = client.get_or_create_collection(name="cred_sentence")
+    sen_collection = client.get_or_create_collection(name="cred_sentence",metadata={"hnsw:space": "cosine"})
     sen_collection.upsert(
         ids=lists[0],
         documents=lists[1],
         embeddings=sen_vectors.tolist(),
         metadatas=lists[2]
     )
-    fixed_collection = client.get_or_create_collection(name="cred_fixed")
+    fixed_collection = client.get_or_create_collection(name="cred_fixed",metadata={"hnsw:space": "cosine"})
     fixed_collection.upsert(
         ids=lists[3],
         documents=lists[4],
