@@ -3,7 +3,7 @@ from collections import Counter
 random.seed(42)
 LOAN_APPLICATIONS=[]
 for i in range(1,41):
-    data={
+        data={
         "record_id":str(i),
         "category":random.choice(["Personal Loan","Home Loan","Auto Loan","Education Loan","Business Loan"]),
         "status" : random.choice(["Submitted","Under Review","Approved","Rejected","Disbursed"]),
@@ -11,6 +11,7 @@ for i in range(1,41):
         "loan_amount_inr": random.randint(10000,2000000),
         "days_since_created":random.randint(0,30),
         "flagged_for_fraud_review":random.choices([True, False], weights=[0.2, 0.8])[0]
-    }
-    LOAN_APPLICATIONS.append(data)
-count=Counter(record["category"] for record in LOAN_APPLICATIONS)
+        }
+        LOAN_APPLICATIONS.append(data)
+if __name__ == "__main__":
+    count=Counter(record["category"] for record in LOAN_APPLICATIONS)

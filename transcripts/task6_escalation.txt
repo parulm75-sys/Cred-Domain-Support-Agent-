@@ -1,0 +1,40 @@
+{'status': 'Submitted', 'loan_amount_inr': 1565144, 'escalation_score': 0.08}
+{'status': 'Submitted', 'loan_amount_inr': 1429141, 'escalation_score': 0.23}
+{'status': 'Disbursed', 'loan_amount_inr': 894834, 'escalation_score': 0.71}
+{'status': 'Under Review', 'loan_amount_inr': 1069806, 'escalation_score': 0.8899999999999999}
+{'status': 'Disbursed', 'loan_amount_inr': 889796, 'escalation_score': 0.06999999999999999}
+{'status': 'Submitted', 'loan_amount_inr': 1601334, 'escalation_score': 0.95}
+{'status': 'Approved', 'loan_amount_inr': 592738, 'escalation_score': 0.04}
+{'status': 'Submitted', 'loan_amount_inr': 204502, 'escalation_score': 0.82}
+{'status': 'Disbursed', 'loan_amount_inr': 564740, 'escalation_score': 0.95}
+{'status': 'Disbursed', 'loan_amount_inr': 271779, 'escalation_score': 0.29}
+{'status': 'Approved', 'loan_amount_inr': 1749387, 'escalation_score': 0.19999999999999998}
+{'status': 'Disbursed', 'loan_amount_inr': 413258, 'escalation_score': 0.9199999999999999}
+{'status': 'Approved', 'loan_amount_inr': 177335, 'escalation_score': 0.27}
+{'status': 'Rejected', 'loan_amount_inr': 592952, 'escalation_score': 0.13999999999999999}
+{'status': 'Under Review', 'loan_amount_inr': 786325, 'escalation_score': 0.10999999999999999}
+{'status': 'Submitted', 'loan_amount_inr': 1287440, 'escalation_score': 0.8999999999999999}
+{'status': 'Under Review', 'loan_amount_inr': 979429, 'escalation_score': 0.12}
+{'status': 'Under Review', 'loan_amount_inr': 1445740, 'escalation_score': 0.09999999999999999}
+{'status': 'Under Review', 'loan_amount_inr': 1733444, 'escalation_score': 0.01}
+{'status': 'Approved', 'loan_amount_inr': 148807, 'escalation_score': 0.06}
+{'status': 'Approved', 'loan_amount_inr': 455910, 'escalation_score': 0.19999999999999998}
+{'status': 'Under Review', 'loan_amount_inr': 565493, 'escalation_score': 0.04}
+{'status': 'Disbursed', 'loan_amount_inr': 561009, 'escalation_score': 0.23}
+{'status': 'Rejected', 'loan_amount_inr': 769161, 'escalation_score': 0.06999999999999999}
+{'status': 'Disbursed', 'loan_amount_inr': 1044977, 'escalation_score': 0.02}
+{'status': 'Under Review', 'loan_amount_inr': 1325849, 'escalation_score': 0.049999999999999996}
+{'status': 'Disbursed', 'loan_amount_inr': 143227, 'escalation_score': 0.12}
+{'status': 'Disbursed', 'loan_amount_inr': 537253, 'escalation_score': 0.16999999999999998}
+{'status': 'Submitted', 'loan_amount_inr': 1439650, 'escalation_score': 0.27999999999999997}
+{'status': 'Approved', 'loan_amount_inr': 243941, 'escalation_score': 0.09}
+{'status': 'Submitted', 'loan_amount_inr': 1524336, 'escalation_score': 0.27999999999999997}
+{'status': 'Under Review', 'loan_amount_inr': 1074685, 'escalation_score': 0.99}
+{'status': 'Disbursed', 'loan_amount_inr': 1287103, 'escalation_score': 0.76}
+{'status': 'Disbursed', 'loan_amount_inr': 1642898, 'escalation_score': 0.29}
+{'status': 'Disbursed', 'loan_amount_inr': 689804, 'escalation_score': 0.85}
+{'status': 'Approved', 'loan_amount_inr': 512167, 'escalation_score': 0.01}
+{'status': 'Submitted', 'loan_amount_inr': 189628, 'escalation_score': 0.23}
+{'status': 'Disbursed', 'loan_amount_inr': 1616071, 'escalation_score': 0.74}
+{'status': 'Disbursed', 'loan_amount_inr': 356296, 'escalation_score': 0.08}
+{'status': 'Rejected', 'loan_amount_inr': 454173, 'escalation_score': 0.29}

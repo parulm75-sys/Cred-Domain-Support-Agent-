@@ -1,5 +1,5 @@
 import chromadb
-import queries
+from RAG import queries
 from sentence_transformers import SentenceTransformer
 client = chromadb.PersistentClient(path="chroma_db")
 sen_collection = client.get_collection(name="cred_sentence")
