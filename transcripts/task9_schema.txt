@@ -1,0 +1,19 @@
+=== Conv 4: Policy Query ===
+[{'query': 'What is the annual fee for the credit card?', 'intent': 'policy', 'response': 'You can find your answer below:\nThere is also a 100 INR annual fee for the user.\nCredit card charges the customers as well as merchant at the same time. To use the credit card, there is 0.5% fee to the user and 2% fee to the merchant for every transaction.\nInterest is also charged to the balance that is not paid until the due date which is calculated on the basis of simple interest of 1% every month that is added to the monthly statement. But there is no late payment fees.'}, {'query': 'What is the annual fee for the credit card?', 'intent': 'policy', 'response': 'You can find your answer below:\nThere is also a 100 INR annual fee for the user.\nCredit card charges the customers as well as merchant at the same time. To use the credit card, there is 0.5% fee to the user and 2% fee to the merchant for every transaction.\nInterest is also charged to the balance that is not paid until the due date which is calculated on the basis of simple interest of 1% every month that is added to the monthly statement. But there is no late payment fees.'}]
+
+=== Conv 5: Record Query ===
+[{'query': 'What is the status of application 33?', 'intent': 'record', 'response': 'The status of the record is Disbursed, the outstanding loan amount is 1287103 and escalation required: Yes'}, {'query': 'What is the status of application 33?', 'intent': 'record', 'response': 'The status of the record is Disbursed, the outstanding loan amount is 1287103 and escalation required: Yes'}]
+
+=== Test 1: Missing Field Error ===
+Validation failed as expected:
+1 validation error for AgentResponse
+response
+  Field required [type=missing, input_value={'query': 'Test query', 'intent': 'policy'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/missing
+
+=== Test 2: Invalid Field Type Error ===
+Validation failed as expected:
+1 validation error for AgentResponse
+response
+  Input should be a valid string [type=string_type, input_value=123, input_type=int]
+    For further information visit https://errors.pydantic.dev/2.13/v/string_type

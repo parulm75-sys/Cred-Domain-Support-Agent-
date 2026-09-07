@@ -4,6 +4,8 @@ from RAG.retrieve import generate, sen_collection
 from agent.tools import check_loan_application_status
 import re
 from agent import memory
+from agent.schema import AgentResponse
+
 class AgentState(TypedDict):
     query: str
     intent: str
@@ -60,6 +62,7 @@ def chat(query, conversation_id):
     history=memory.load_fun(conversation_id)
     result=app.invoke({"query":query,
                        "history":history})
+    validated = AgentResponse(**result)
     history.append({"query":result["query"],
                     "intent":result["intent"],
                     "response":result["response"]
@@ -67,7 +70,25 @@ def chat(query, conversation_id):
     memory.save_fun(conversation_id,history)
     return history
 if __name__ == "__main__":
-    print(chat("What is the annual fee for the credit card?", "conv_2"))
-    print(chat("What is the status of application 33?", "conv_2"))
-    print(chat("What are the KYC documents required?", "conv_2"))
+    print("=== Conv 4: Policy Query ===")
+    print(chat("What is the annual fee for the credit card?", "conv_4"))
+    
+    print("\n=== Conv 5: Record Query ===")
+    print(chat("What is the status of application 33?", "conv_5"))
+    
+    print("\n=== Test 1: Missing Field Error ===")
+    try:
+        # Intentionally missing 'response'
+        AgentResponse(query="Test query", intent="policy")
+    except Exception as e:
+        print("Validation failed as expected:")
+        print(e)
+        
+    print("\n=== Test 2: Invalid Field Type Error ===")
+    try:
+        # Intentionally passing integer for string 'response'
+        AgentResponse(query="Test query", intent="policy", response=123)
+    except Exception as e:
+        print("Validation failed as expected:")
+        print(e)
     
