@@ -7,3 +7,6 @@ class AgentResponse(BaseModel):
 class AskRequest(BaseModel):
     query: str
     conversation_id: str
+class AddDocumentRequest(BaseModel):
+    doc_id: str
+    text: str

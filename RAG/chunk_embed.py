@@ -3,6 +3,7 @@ from langchain_text_splitters import CharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import re
 import chromadb
+model = SentenceTransformer('all-MiniLM-L6-v2')
 def load_kb():
     kb_folder = Path("kb")
     kb_docs = {}
@@ -56,32 +57,31 @@ def embed_doc(kb_docs):
                     "strategy":"fixed",
                     "chunk_index":idx
                 })
-    print(sen_docs[0],fixed_docs[0])
     return([sen_ids,sen_docs,sen_metadatas,fixed_ids,fixed_docs,fixed_metadatas])
+def add_sen_collection(sen_ids,sen_docs,sen_metadatas):
+    sen_vectors = model.encode(sen_docs)
+    client = chromadb.PersistentClient(path="chroma_db")
+    sen_collection = client.get_or_create_collection(name="cred_sentence",metadata={"hnsw:space": "cosine"})
+    sen_collection.upsert(
+            ids=sen_ids,
+            documents=sen_docs,
+            embeddings=sen_vectors.tolist(),
+            metadatas=sen_metadatas
+        )
+def add_fixed_collection(fixed_ids,fixed_docs,fixed_metadatas):
+    fixed_vectors = model.encode(fixed_docs)
+    client = chromadb.PersistentClient(path="chroma_db")
+    fixed_collection = client.get_or_create_collection(name="cred_fixed",metadata={"hnsw:space": "cosine"})
+    fixed_collection.upsert(
+            ids=fixed_ids,
+            documents=fixed_docs,
+            embeddings=fixed_vectors.tolist(),
+            metadatas=fixed_metadatas)
 if __name__ == "__main__":
     kb_docs=load_kb()
     lists=embed_doc(kb_docs)
     for i in lists:
         print(len(i))
-
 #  Embedding and ChromaDB
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    sen_vectors = model.encode(lists[1])
-    fixed_vectors=model.encode(lists[4])
-    client = chromadb.PersistentClient(path="chroma_db")
-    sen_collection = client.get_or_create_collection(name="cred_sentence",metadata={"hnsw:space": "cosine"})
-    sen_collection.upsert(
-        ids=lists[0],
-        documents=lists[1],
-        embeddings=sen_vectors.tolist(),
-        metadatas=lists[2]
-    )
-    fixed_collection = client.get_or_create_collection(name="cred_fixed",metadata={"hnsw:space": "cosine"})
-    fixed_collection.upsert(
-        ids=lists[3],
-        documents=lists[4],
-        embeddings=fixed_vectors.tolist(),
-        metadatas=lists[5]
-    )
-    print(sen_collection.count())
-    print(fixed_collection.count())
+    add_sen_collection(lists[0],lists[1],lists[2])
+    add_fixed_collection(lists[3],lists[4],lists[5])
