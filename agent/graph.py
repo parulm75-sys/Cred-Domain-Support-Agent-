@@ -3,10 +3,12 @@ from langgraph.graph import StateGraph, END
 from RAG.retrieve import generate, sen_collection
 from agent.tools import check_loan_application_status
 import re
+from agent import memory
 class AgentState(TypedDict):
     query: str
     intent: str
     result: dict
+    history:list
     response: str
 def classify(state):
     check=state["query"].lower()
@@ -54,5 +56,18 @@ graph.add_edge("record", "format_response")
 graph.add_edge("format_response", END)
 graph.add_conditional_edges("classify", route)
 app = graph.compile()
-print(app.invoke({"query": "What is the annual fee for the credit card?"}))
-print(app.invoke({"query": "What is the status of application 23?"}))
+def chat(query, conversation_id):
+    history=memory.load_fun(conversation_id)
+    result=app.invoke({"query":query,
+                       "history":history})
+    history.append({"query":result["query"],
+                    "intent":result["intent"],
+                    "response":result["response"]
+                    })
+    memory.save_fun(conversation_id,history)
+    return history
+if __name__ == "__main__":
+    print(chat("What is the annual fee for the credit card?", "conv_2"))
+    print(chat("What is the status of application 33?", "conv_2"))
+    print(chat("What are the KYC documents required?", "conv_2"))
+    
