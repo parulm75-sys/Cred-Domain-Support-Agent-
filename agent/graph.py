@@ -38,7 +38,7 @@ def format_response(state):
         if(overlap(state["query"]," ".join(result["content"]))):
             text="You can find your answer below:\n"+"\n".join(state["result"]["content"])
         else:
-             return{"response": "Sorry, we could not find any record"}
+             return{"response": "Answer not supported by retrieved context"}
     else:
         text=f"The status of the record is {result['status']}, the outstanding loan amount is {result['loan_amount_inr']} and escalation required: "
         if(result["escalation_score"]>=0.5):
