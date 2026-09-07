@@ -131,5 +131,24 @@
       "intent": "record",
       "response": "The status of the record is Disbursed, the outstanding loan amount is 894834 and escalation required: Yes"
     }
+  ],
+  "conv_8": [
+    {
+      "query": "What is the fees, I am looking at if I want to pay my 60000 INR loan after the first year?",
+      "intent": "policy",
+      "response": "Sorry, we could not find any record"
+    },
+    {
+      "query": "What is the fees, I am looking at if I want to pay my 60000 INR loan after the first year?",
+      "intent": "policy",
+      "response": "Sorry, we could not find any record"
+    }
+  ],
+  "conv_9": [
+    {
+      "query": "What is the annual fee for the credit card?",
+      "intent": "policy",
+      "response": "You can find your answer below:\nThere is also a 100 INR annual fee for the user.\nCredit card charges the customers as well as merchant at the same time. To use the credit card, there is 0.5% fee to the user and 2% fee to the merchant for every transaction.\nInterest is also charged to the balance that is not paid until the due date which is calculated on the basis of simple interest of 1% every month that is added to the monthly statement. But there is no late payment fees."
+    }
   ]
 }

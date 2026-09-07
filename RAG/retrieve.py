@@ -1,6 +1,7 @@
 import chromadb
 from RAG import queries
 from sentence_transformers import SentenceTransformer
+from agent.guardrails import overlap
 client = chromadb.PersistentClient(path="chroma_db")
 sen_collection = client.get_collection(name="cred_sentence")
 fixed_collection = client.get_collection(name="cred_fixed")
@@ -55,14 +56,14 @@ if __name__ == "__main__":
         recall,precision=prec_recall(i,out)
         recall_avg_sen+=recall
         precision_avg_sen+=precision
-        print(f"Query :{i['query']} sentence strategy recall: {recall} precision: {precision}")
+        print(f"Query :{i['query']} overlap: {overlap(i["query"],"".join(out["content"]))}  sentence strategy recall: {recall} precision: {precision}")
         if(precision!=0):
               print(f" or 1/{len(out['doc_id'])}")
         out=generate(i['query'],fixed_collection)
         recall,precision=prec_recall(i,out)
         recall_avg_fixed+=recall
         precision_avg_fixed+=precision
-        print(f"fixed strategy recall: {recall} precision: {precision}")
+        print(f"fixed strategy overlap: {overlap(i["query"],"".join(out["content"]))} recall: {recall} precision: {precision}")
         if(precision!=0):
               print(f" or 1/{len(out['doc_id'])}")
     length=12
