@@ -1,0 +1,6 @@
+NODE: classify running
+NODE: record running
+Saved state: {'query': 'What is the status of my application 23', 'intent': 'record', 'result': {'status': 'Disbursed', 'loan_amount_inr': 561009, 'escalation_score': 0.23}, 'history': []}
+Next node: ('format_response',)
+NODE: format_response running
+The status of the record is Disbursed, the outstanding loan amount is 561009 and escalation required: No

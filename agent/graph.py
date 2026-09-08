@@ -6,6 +6,10 @@ import re
 from agent import memory
 from agent.schema import AgentResponse
 from agent.guardrails import mask_pii,detect_injections,overlap
+from langgraph.checkpoint.sqlite import SqliteSaver
+import sqlite3
+conn = sqlite3.connect("checkpoints.sqlite", check_same_thread=False)
+checkpointer = SqliteSaver(conn)
 class AgentState(TypedDict):
     query: str
     intent: str
@@ -13,6 +17,7 @@ class AgentState(TypedDict):
     history:list
     response: str
 def classify(state):
+    print("NODE: classify running")
     check=state["query"].lower()
     policy=["status","application"]
     if(policy[0] in check or policy[1] in check):
@@ -20,8 +25,10 @@ def classify(state):
     else:
         return{"intent":"policy"}
 def policy(state):
+    print("NODE: policy running")
     return {"result":generate(state["query"],sen_collection)}
 def record(state):
+    print("NODE: record running")
     match = re.search(r"\d+", state["query"])
     if(match!=None):
         number=match.group()
@@ -29,6 +36,7 @@ def record(state):
     else:
         return{"result":None} 
 def format_response(state):
+    print("NODE: format_response running")
     result=state["result"]
     intent=state["intent"]
     text=""
@@ -61,15 +69,16 @@ graph.add_edge("record", "format_response")
 graph.add_edge("format_response", END)
 graph.add_conditional_edges("classify", route)
 app = graph.compile()
+checkpoint_app = graph.compile(checkpointer=checkpointer, interrupt_before=["format_response"])
 def chat(query, conversation_id):
     history=memory.load_fun(conversation_id)
+    query=mask_pii(query)
     if(detect_injections(query)):
         history.append({"query":query,
                         "intent": "injection Detected",
                         "response":"Sorry, I cannot further assist with any of your query"
                         })
     else:
-        query=mask_pii(query)
         result=app.invoke({"query":query,
                        "history":history})
         validated = AgentResponse(**result)
