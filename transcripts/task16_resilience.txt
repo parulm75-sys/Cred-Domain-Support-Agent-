@@ -1,0 +1,16 @@
+=== DEMO 1: RETRY ===
+NODE: start running
+NODE: flaky attempt 1
+NODE: flaky attempt 2
+NODE: flaky attempt 3
+NODE: end_state running
+{'value': 'successful', 'intent': 'retry_test'}
+
+=== DEMO 2: PER-NODE TIMEOUT ===
+NODE: slow_node running
+Caught: NodeTimeoutError: Node 'slow_node' exceeded its run timeout of 1.000s (elapsed: 1.014s).
+
+=== DEMO 3: GLOBAL / PIPELINE TIMEOUT ===
+NODE: slow_step_one running...
+NODE: slow_step_two running...
+Caught: TimeoutError: Pipeline exceeded overall execution budget
