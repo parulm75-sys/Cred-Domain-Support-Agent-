@@ -1,0 +1,17 @@
+Query: How many days it will take to close my account? | Context: 0.6948370933532715 | Ground: 1 | Answer: True
+Query: What is the annual fee for the credit card? | Context: 0.6539443731307983 | Ground: 1 | Answer: True
+Query: How can I increase my credit score? | Context: 0.5003811717033386 | Ground: 1 | Answer: True
+Query: What would be my EMI if I take a loan of 50000 INR at 1% rate monthly for 70 months | Context: 0.7455790042877197 | Ground: 1 | Answer: True
+Query: I think there is a transaction that is unknown to me, what can I do? | Context: 0.6370911598205566 | Ground: 1 | Answer: True
+Query: I have taken the loan of 76567 INR, what is my interest rate? | Context: 0.7477608919143677 | Ground: 1 | Answer: True
+Query: me and my wife holds a joint account, I want to make a withdrawal, can I come by myself? | Context: 0.536149263381958 | Ground: 1 | Answer: True
+Query: MY KYC fails, what is my next step? | Context: 0.4106283187866211 | Ground: 0 | Answer: 0
+Query: I want to apply for Car Loan and I have credit score of 701, am I eligible to apply? | Context: 0.652094841003418 | Ground: 1 | Answer: True
+Query: Why I am being charged 100 INR monthly, my account balance is 799 INR for now? | Context: 0.518278181552887 | Ground: 1 | Answer: True
+Query: What are the documents required to apply for NRI account? | Context: 0.7865658402442932 | Ground: 1 | Answer: True
+Query: What is the fees, I am looking at if I want to pay my 60000 INR loan after the first year? | Context: 0.702844500541687 | Ground: 1 | Answer: False
+Query: What is the monthly salary of the bank employee | Context: 0.42276495695114136 | Ground: 0 | Answer: 0
+Query: What is the capital of India? | Context: 0.22663986682891846 | Ground: 0 | Answer: 0
+Query: What is the annual income of Salman Khan? | Context: 0.29764652252197266 | Ground: 0 | Answer: 0
+ Average :  
+Context Relevance: 0.5688803990681967 Groundedness: 0.7333333333333333   Answer relevance: 0.6666666666666666 

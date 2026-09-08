@@ -54,4 +54,8 @@ QUERIES = [{
     "doc_id":None,
     "query":"What is the capital of India?",
     "in_scope": False
+},{
+    "doc_id":None,
+    "query":"What is the annual income of Salman Khan?",
+    "in_scope": False
 }]
