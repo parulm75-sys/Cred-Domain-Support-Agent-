@@ -271,3 +271,114 @@ reaches disk on either branch
 - **Demonstrated:** `/ask` called with a query containing a PAN number; 
 `logs.jsonl` showed `[PAN_MASKED]` in the logged query, confirming masking 
 applies before disk; sample log lines saved in `transcripts/task12_logging.txt`
+
+- **Per-query results:**
+
+| Query | Context | Grounded | Answer |
+|---|---|---|---|
+| How many days to close my account? | 0.695 | 1 | True |
+| Annual fee for the credit card? | 0.654 | 1 | True |
+| How can I increase my credit score? | 0.500 | 1 | True |
+| EMI on 50,000 INR at 1% for 70 months? | 0.746 | 1 | True |
+| Unknown transaction — what can I do? | 0.637 | 1 | True |
+| Interest rate on loan of 76,567 INR? | 0.748 | 1 | True |
+| Joint account — can I withdraw alone? | 0.536 | 1 | True |
+| My KYC fails — what is my next step? | 0.411 | 0 | 0 |
+| Car loan eligibility with score 701? | 0.652 | 1 | True |
+| Why am I charged 100 INR monthly? | 0.518 | 1 | True |
+| Documents required for NRI account? | 0.787 | 1 | True |
+| Prepayment fee on 60,000 INR loan? | 0.703 | 1 | False |
+| Monthly salary of bank employee? | 0.423 | 0 | 0 |
+| Capital of India? | 0.227 | 0 | 0 |
+| Who is Salman Khan? | 0.298 | 0 | 0 |
+
+- **Averages (over 15 queries):**
+  - Context Relevance: 0.569
+  - Groundedness: 0.733
+  - Answer Relevance: 0.667
+
+  ## Task 14 — MCP Server and Client
+
+- **Two separate files and processes:**
+  - `mcp_integration/mcp_server.py` — defines and runs the MCP server
+  - `mcp_integration/mcp_client.py` — connects and calls the tool; 
+  the server must be running in a separate terminal before the client is started
+- **Server:** built with `FastMCP("cred-support")`; runs HTTP transport on 
+port 8001; tool accessible at `http://127.0.0.1:8001/mcp`
+- **Tool:** `check_loan_status(record_id: str) -> dict` — looks up a loan 
+application by record ID and returns its status, loan amount in INR, and 
+computed escalation score; valid IDs are "1" through "40" as strings
+- **Client:** async, using `fastmcp.Client`; opens connection with `async with`, 
+calls `call_tool` with the tool name and a dict of arguments, prints the 
+full `CallToolResult` response including the MCP protocol wrapper
+- **Demonstrated:** two record IDs called through the same interface:
+  - Record 3 — status Disbursed, loan 894,834 INR, escalation 0.71 (escalates)
+  - Record 27 — status Disbursed, loan 143,227 INR, escalation 0.12 (does not escalate)
+- **Response shape:** `CallToolResult` contains `structured_content` (the plain 
+dict), `serverInfo` with server name and version, and `is_error: False` — 
+the protocol wrapper around the tool's return value
+- **Transcript:** saved in `transcripts/task14_mcp.txt`
+
+## Task 15 — SQLite Checkpointing
+
+- **Package:** `langgraph-checkpoint-sqlite`; checkpointer created with 
+`conn = sqlite3.connect("checkpoints.sqlite", check_same_thread=False)` then 
+`SqliteSaver(conn)`, passed to `graph.compile(checkpointer=checkpointer)`
+- **Two compiled graphs:** both defined in `graph.py` — `app` compiles without 
+a checkpointer for normal API and memory use; `checkpoint_app` compiles with 
+the checkpointer; `checkpointer_demo.py` imports `checkpoint_app` and runs the 
+three-phase demonstration
+- **Interrupt mechanism:** `interrupt_before=["format_response"]` passed to 
+`compile`; execution halts after `record` completes and before `format_response` 
+runs, leaving state saved to SQLite
+- **Thread ID:** `{"configurable": {"thread_id": "demo-thread-1"}}`; same config 
+passed to both the initial invoke and the resume so LangGraph loads state from 
+the correct checkpoint
+- **Three-phase demonstration:**
+  - Phase 1 (initial run, interrupted): `NODE: classify running` and 
+  `NODE: record running` printed; execution stopped; checkpoint saved with 
+  `next: ('format_response',)`
+  - Phase 2 (checkpoint inspection): saved state printed showing `intent: record`, 
+  full result dict, and next node confirmed as `format_response`
+  - Phase 3 (resume): `NODE: format_response running` printed and final answer 
+  returned; `classify` and `record` stayed silent — their outputs loaded from 
+  the checkpoint rather than recomputed
+- **The absence in Phase 3 is the evidence:** two nodes that printed in Phase 1 
+produced no output on resume, proving state was restored rather than re-executed
+- **Transcript:** saved in `transcripts/task15_checkpoint.txt`; 
+`checkpoints.sqlite` is in `.gitignore` since it regenerates on every run
+
+## Task 16 — Timeouts and Retries
+
+- **File:** `resilience_demo.py` (three demonstrations in one script, 
+one run produces all three labelled outputs)
+- **Transcript:** saved in `transcripts/task16_resilience.txt`
+
+### Demo 1 — Retry with RetryPolicy
+- **Parameters:** `max_attempts=3`, `initial_interval=0.5`, `max_interval=4.0`, 
+`backoff_factor=2.0`, `jitter=True`, `retry_on=RuntimeError`
+- **Why `retry_on` must be set explicitly:** LangGraph's default filter excludes 
+`RuntimeError`; without it the policy would not catch the simulated failure and 
+the node would fail immediately rather than retrying
+- **Demonstrated:** `flaky_node` raised `RuntimeError` on attempts 1 and 2, 
+succeeded on attempt 3; `end_state` ran and returned `successful`
+
+### Demo 2 — Per-Node Timeout
+- **Mechanism:** `timeout=1.0` passed to `add_node`; `slow_node` sleeps 3 seconds 
+against a 1-second budget
+- **Why the node must be async:** LangGraph raises `ValueError` if a timeout is 
+set on a sync node — sync Python execution cannot be safely cancelled in-process; 
+converting to `async def` with `await asyncio.sleep` makes cancellation possible
+- **Demonstrated:** `NODE: slow_node running` printed; 
+`NodeTimeoutError: Node 'slow_node' exceeded its run timeout of 1.000s 
+(elapsed: 1.002s)` caught cleanly after approximately 1 second
+
+### Demo 3 — Global Pipeline Timeout
+- **Mechanism:** `asyncio.wait_for(global_app.ainvoke(...), timeout=2.0)`; 
+two nodes each sleeping 1.5 seconds give a 3-second total pipeline against 
+a 2-second budget
+- **Why `wait_for` rather than per-node timeout:** the brief asks for a 
+total-time budget; neither node individually exceeds 1 second per step, 
+so a per-node timeout would not fire — `wait_for` wraps the whole invocation
+- **Demonstrated:** both nodes started printing; `TimeoutError` caught at 
+2 seconds before the pipeline could complete
